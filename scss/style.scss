@@ -1,0 +1,71 @@
+// @useとパーシャルファイル
+// @use 'reset';
+// @use 'common';
+
+// 変数
+$textColor: #333;
+$bgColor: #ccc;
+$buttonBgColor: #dc5e0f;
+
+body {
+    background-color: $bgColor;
+}
+
+//　&「アンパサンド」
+p {
+    & + & {
+        margin-top: 1em;
+    }
+    &.text-bold {
+        font-weight: bold;
+    }
+    color: $textColor; // 変数用
+}
+
+.header-nav {
+    &__list {
+        display: flex;
+        list-style: none;
+        &__item {
+            margin: 1rem;
+        }
+    }
+}
+
+li {
+    margin-bottom: 1em;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &::before {
+        content: "※";
+    }
+}
+
+// mixin「ミックスイン」
+@mixin button {
+    display: inline-block;
+    margin-bottom: 1em;
+    padding: 0.5em 2em;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+.button-sm {
+    width: 25%;
+    background-color: #c30000;
+    @include button;
+}
+.button-lg {
+    width: 50%;
+    background-color: #003b9b;
+    @include button;
+}
+
+// 変数用
+.button {
+    @include button;
+    background-color: $buttonBgColor;
+}
